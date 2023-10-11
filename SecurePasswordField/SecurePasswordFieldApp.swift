@@ -1,9 +1,11 @@
+//  /*
 //
-//  SecurePasswordFieldApp.swift
-//  SecurePasswordField
+//  Project: SecurePasswordField
+//  File: SecurePasswordFieldApp.swift
+//  Created by: Elaidzha Shchukin
+//  Date: 11.10.2023
 //
-//  Created by Elaidzha Shchukin on 11.10.2023.
-//
+//  */
 
 import SwiftUI
 
