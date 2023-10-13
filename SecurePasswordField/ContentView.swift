@@ -35,7 +35,21 @@ struct ContentView: View {
     private var foregroundLayer: some View {
         RoundedRectangle(cornerRadius: 50)
             .frame(width: 300, height: 70, alignment: .center)
+            .foregroundColor(.gray)
         
+        return HStack {
+            if !showPassword {
+                Spacer()
+            }
+            RoundedRectangle(cornerRadius: showPassword ? 25 : 50)
+                .frame(width: showPassword ? 300 : 50, height: showPassword ? 75 : 50, alignment: .center)
+                .animation(.linear(duration: 0.2))
+                .padding(.trailing, showPassword ? 0 : 12)
+        }
+        
+        HStack {
+            
+        }
     }
 }
 
