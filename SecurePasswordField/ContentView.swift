@@ -26,25 +26,28 @@ struct ContentView: View {
             
             // foreground
             RoundedRectangle(cornerRadius: 50)
-                .frame(width: 300, height: 75, alignment: .center)
+                .frame(width: 350, height: 75, alignment: .center)
                 .foregroundColor(.gray)
             
-            HStack {
+            HStack { // Start: 1st HS
                 if !showPassword {
                     Spacer()
                 }
-                RoundedRectangle(cornerRadius: showPassword ? 25   : 50)
-                    .frame(width: showPassword ? 300 : 50, height: showPassword ? 75 : 50, alignment: .center)
-                withAnimation(.easeInOut(duration: 0.3)){
-
-                }
-                .padding(.trailing, showPassword ? 0 : 10)
-            }
-            
-            HStack {
+                RoundedRectangle(cornerRadius: showPassword ? 25 : 50)
+                    .frame(width: showPassword ? 350 : 50, height: showPassword ? 75 : 50, alignment: .center)
+                //.animation(.linear(duration: 0.3))
+                    .padding(.trailing, showPassword ? 0 : 10)
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showPassword.toggle()
+                        }
+                    }
+            } // END: 1st HS
+        
+            HStack { // Start: 2nd HS
                 if showPassword {
                     TextField("password", text: $password)
-                        .font(.system(size: 15, weight: .semibold, design: .serif))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                         .padding(.leading, 20)
                         .foregroundColor(.black)
                 } else {
@@ -55,25 +58,26 @@ struct ContentView: View {
                 
                 Image(systemName: showPassword ? "eye" : "eye.slash")
                     .resizable()
-                    .frame(width: 30, height: 20)
-                    .font(.system(size: 15, weight: .bold, design: .serif))
+                    .frame(width: 30, height: 25)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.trailing, 20)
                     .onTapGesture {
-                        showPassword.toggle()
+                        withAnimation {
+                            showPassword.toggle()
+                        }
                     }
-            }
+            } // END: 2nd HS
         } // END: VS
         // background
+        .preferredColorScheme(.dark)
+        .frame(width: 350)
+
     }
 }
 // MARK: Preview
 #Preview {
-    ZStack {
         ContentView()
-            .frame(width: 300)
-            .preferredColorScheme(.dark)
-    }
 }
 
 
