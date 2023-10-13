@@ -43,8 +43,18 @@ struct ContentView: View {
                 if !showPassword {
                     TextField("password", text: $password)
                         .font(.system(size: 15, weight: .semibold, design: .serif))
+                        .padding(.leading, 20)
                         .foregroundColor(.black)
+                } else {
+                    SecureField("Password", text: $password)
+                        .padding(.leading, 20)
                 }
+                Spacer()
+                
+                Image(systemName: showPassword ? "eye" : "eye,slash")
+                    .resizable()
+                    .frame(width: 35, height: 20)
+                    .font(.system(size: 15, weight: .bold, design: .serif))
             }
         } // END: VS
         // background
