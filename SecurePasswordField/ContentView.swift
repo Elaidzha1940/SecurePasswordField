@@ -26,21 +26,23 @@ struct ContentView: View {
             
             // foreground
             RoundedRectangle(cornerRadius: 50)
-                .frame(width: 300, height: 70, alignment: .center)
+                .frame(width: 300, height: 75, alignment: .center)
                 .foregroundColor(.gray)
             
             HStack {
                 if !showPassword {
                     Spacer()
                 }
-                RoundedRectangle(cornerRadius: showPassword ? 25 : 50)
+                RoundedRectangle(cornerRadius: showPassword ? 25   : 50)
                     .frame(width: showPassword ? 300 : 50, height: showPassword ? 75 : 50, alignment: .center)
-                    .animation(.linear(duration: 0.2))
-                    .padding(.trailing, showPassword ? 0 : 12)
+                withAnimation(.easeInOut(duration: 0.3)){
+
+                }
+                .padding(.trailing, showPassword ? 0 : 10)
             }
             
             HStack {
-                if !showPassword {
+                if showPassword {
                     TextField("password", text: $password)
                         .font(.system(size: 15, weight: .semibold, design: .serif))
                         .padding(.leading, 20)
@@ -51,19 +53,27 @@ struct ContentView: View {
                 }
                 Spacer()
                 
-                Image(systemName: showPassword ? "eye" : "eye,slash")
+                Image(systemName: showPassword ? "eye" : "eye.slash")
                     .resizable()
-                    .frame(width: 35, height: 20)
+                    .frame(width: 30, height: 20)
                     .font(.system(size: 15, weight: .bold, design: .serif))
+                    .foregroundColor(.black)
+                    .padding(.trailing, 20)
+                    .onTapGesture {
+                        showPassword.toggle()
+                    }
             }
         } // END: VS
         // background
-        .preferredColorScheme(.dark)
     }
 }
 // MARK: Preview
 #Preview {
-    ContentView()
+    ZStack {
+        ContentView()
+            .frame(width: 300)
+            .preferredColorScheme(.dark)
+    }
 }
 
 
