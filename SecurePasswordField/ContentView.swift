@@ -19,6 +19,11 @@ struct ContentView: View {
     
     /*
      Fix RoundedRectangle
+     Fix RoundedRectangle with showPassword ?
+     Fix TextField
+     Fix SecureField
+     Fix withAnimation
+     Fix onTapGesture
      */
     var body: some View {
         
@@ -35,7 +40,6 @@ struct ContentView: View {
                 }
                 RoundedRectangle(cornerRadius: showPassword ? 25 : 50)
                     .frame(width: showPassword ? 350 : 50, height: showPassword ? 75 : 50, alignment: .center)
-                //.animation(.linear(duration: 0.3))
                     .padding(.trailing, showPassword ? 0 : 10)
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -43,7 +47,7 @@ struct ContentView: View {
                         }
                     }
             } // END: 1st HS
-        
+            
             HStack { // Start: 2nd HS
                 if showPassword {
                     TextField("password", text: $password)
@@ -55,7 +59,7 @@ struct ContentView: View {
                         .padding(.leading, 20)
                 }
                 Spacer()
-                
+                // MARK: Image for TextField
                 Image(systemName: showPassword ? "eye" : "eye.slash")
                     .resizable()
                     .frame(width: 30, height: 25)
@@ -72,12 +76,12 @@ struct ContentView: View {
         // background
         .preferredColorScheme(.dark)
         .frame(width: 350)
-
+        
     }
 }
 // MARK: Preview
 #Preview {
-        ContentView()
+    ContentView()
 }
 
 
